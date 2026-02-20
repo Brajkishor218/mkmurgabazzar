@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MK Poultry Farm | Urej Barkagaon</title>
+
+    <style>
+         :root {
+            --primary: #3498db;
+            /* Soft Blue */
+            --secondary: #e67e22;
+            /* Warm Orange */
+            --dark: #2c3e50;
+            /* Deep Navy */
+            --light: #ecf0f1;
+            /* Light Gray */
+            --accent: #9b59b6;
+            /* Rich Purple */
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--light);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: var(--dark);
+            color: #999fff;
+            text-align: center;
+            padding: 20px 15px 40px;
+            position: relative;
+        }
+        
+        header h1 {
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+        
+        header h3 {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--secondary);
+        }
+        
+        header p {
+            margin-top: 8px;
+            color: rgb(50, 183, 201);
+        }
+        
+        .logo-icon {
+            width: 70px;
+            height: 70px;
+            margin-bottom: 10px;
+        }
+        
+        .logo-title {
+            font-size: 2em;
+            font-weight: 700;
+            color: #c0392b;
+            text-shadow: 1px 1px #fff2cc;
+        }
+        
+        .logo-subtitle {
+            font-size: 1.2em;
+            color: #7f8c8d;
+            font-style: italic;
+            margin-top: 4px;
+        }
+        
+        .slogan {
+            font-size: 1em;
+            color: #d35400;
+            margin-top: 10px;
+        }
+        
+        nav {
+            background: var(--primary);
+            padding: 12px 0;
+            text-align: center;
+        }
+        
+        nav a {
+            color: white;
+            margin: 0 15px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: var(--dark);
+        }
+        
+        section {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        section h2 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            border-left: 5px solid var(--secondary);
+            padding-left: 10px;
+        }
+        
+        ul {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        /* Slider styles (moved out of .gallery) */
+        
+        .slider {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto 16px;
+            overflow: hidden;
+            border-radius: 10px;
+            background: #000;
+            height: 500px;
+        }
+        
+        .slider-track {
+            display: flex;
+            transition: transform 420ms ease;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .slide {
+            flex: 0 0 100%;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+        }
+        /* slide img behavior is controlled by `.slider[data-fit]` rules declared later */
+        /* Responsive: on narrow viewports use viewport-relative height */
+        
+        @media (max-width: 700px) {
+            .slider {
+                height: 50vh;
+            }
+        }
+        
+        .call-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+        }
+        
+        .social-icons a {
+            transition: background-color 180ms ease, transform 180ms ease;
+        }
+        
+        .social-icons a:hover {
+            transform: translateY(-4px) scale(1.03);
+        }
+        
+        form {
+            margin-top: 15px;
+        }
+        
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        
+        button {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background: #66CCFF;
+        }
+        
+        .call-button {
+            display: inline-block;
+            background: #cfcf3b;
+            color: rgb(16, 71, 138);
+            font-weight: bold;
+            padding: 6px 12px;
+            border-radius: 1px;
+            text-decoration: none;
+            margin: 5px 0;
+        }
+        
+        .social-section {
+            text-align: left;
+            margin-top: 30px;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #f4f6f7;
+            padding: 8px 12px;
+            border-radius: 999px;
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 600;
+            transition: background-color 180ms ease, color 180ms ease, transform 160ms ease;
+        }
+        /* Icon sizing inside social links */
+        
+        .social-icons a svg {
+            width: 20px;
+            height: 20px;
+            flex: 0 0 20px;
+            fill: currentColor;
+        }
+        
+        .social-icons .social-label {
+            display: inline-block;
+            font-size: 0.95rem;
+            line-height: 1;
+        }
+        /* Visually hidden text for screen readers */
+        
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        /* Floating action buttons (WhatsApp + Location) */
+        
+        .whatsapp-float,
+        .location-float {
+            position: fixed;
+            bottom: 20px;
+            border-radius: 9999px;
+            padding: 0;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0;
+            /* hide emoji fallback */
+            color: white;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.16);
+            z-index: 1000;
+            text-align: center;
+            text-decoration: none;
+            transition: transform 160ms ease, box-shadow 160ms ease;
+        }
+        
+        .whatsapp-float:hover,
+        .location-float:hover {
+            transform: translateY(-4px) scale(1.06);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+        }
+        
+        .whatsapp-float {
+            bottom: 90px;
+            right: 20px;
+            background-color: #25D366;
+        }
+        
+        .location-float {
+            right: 20px;
+            bottom: 10px;
+            background-color: #e67e22;
+        }
+        /* Lightbox (modal) styles */
+        
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.82);
+            z-index: 2000;
+            padding: 24px;
+        }
+        
+        .lightbox.open {
+            display: flex;
+        }
+        
+        .lightbox-content {
+            max-width: 1100px;
+            width: 100%;
+            max-height: 92vh;
+            overflow: hidden;
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        .lightbox img {
+            width: auto;
+            max-width: 95%;
+            height: auto;
+            max-height: 85vh;
+            /* avoid overflow on tall screens */
+            display: block;
+            object-fit: contain;
+            border-radius: 8px;
+            background: #000;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            right: 8px;
+            top: 8px;
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+            border: none;
+            font-size: 28px;
+            line-height: 28px;
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        /* Image sizing and fit modes for the slider */
+        /* Simple image sizing for both modes */
+        /* Base image styling for slides.
+           - transition for smooth hover/scale
+           - images fill available area but keep their aspect when in 'contain' mode
+         */
+        
+        .slide img {
+            width: 100%;
+            height: 100%;
+            max-height: 500px;
+            object-position: center;
+            display: block;
+            transition: transform 220ms ease, filter 200ms ease;
+            will-change: transform;
+            cursor: pointer;
+            /* show pointer to indicate clickable */
+        }
+        /* Hover effect: subtle scale and brighten to indicate interactivity */
+        
+        .slide:hover img {
+            transform: scale(1.03);
+            filter: brightness(1.06);
+        }
+        
+        .slider[data-fit="contain"] .slide img {
+            /* Show the whole image without forcing full width/height.
+               Use auto sizing and max constraints so the image scales to fit the slide. */
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .slider[data-fit="cover"] .slide img {
+            object-fit: cover;
+        }
+        /* Fit toggle button */
+        
+        .slider-fit-toggle {
+            position: absolute;
+            top: 12px;
+            right: 60px;
+            width: 56px;
+            height: 36px;
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.38);
+            color: #fff;
+            border: none;
+            font-weight: 600;
+            z-index: 1600;
+            cursor: pointer;
+        }
+        
+        .slider-fit-toggle:hover {
+            transform: scale(1.03);
+        }
+        
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.45);
+            color: #fff;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1500;
+        }
+        
+        .slider-btn.prev {
+            left: 12px;
+        }
+        
+        .slider-btn.next {
+            right: 12px;
+        }
+        
+        .slider-dots {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 10px;
+            display: flex;
+            gap: 8px;
+            z-index: 1500
+        }
+        
+        .slider-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer
+        }
+        
+        .slider-dot.active {
+            background: #fff
+        }
+        /* Play/Pause removed: autoplay is manual via controls (no auto-start) */
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.9em;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>MK Murga bazzar</h1>
+        <h3>"Fresh murga milega, boss – farm se direct, no loss!"</h3>
+        <p>Serving Quality Since 2020 | Urej, Barkagaon, Hazaribagh</p>
+
+
+    </header>
+
+    <nav>
+        <a href="#about">About</a>
+        <a href="#farm">Our Farm</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+        <a href="https://maps.app.goo.gl/sE8Q1cU96skWhXtZ6?g_st=ac" target="_blank">Location</a>
+    </nav>
+
+    <section id="about">
+        <h2>About Us</h2>
+        <p>
+            MK Poultry Farm was
+            <strong>established in 2020</strong> Urej, Barkagaon, Hazaribagh. We are known for clean and healthy poultry farming practices. Our goal is to deliver high-quality, fresh poultry meat raised with care and hygiene. <br>
+            <br>At
+            <strong> MK MURGA BAZZAR</strong> , we believe that <strong>quality begins at the source</strong>. Our birds live in clean, stress-free environments with fresh air, nutritious feed, and expert care.
+        </p>
+    </section>
+
+    <section id="farm">
+        <h2>Farm Details</h2>
+        <ul>
+            <li>🐣 <strong>Farm Size:</strong> 10,000 sq ft with temperature-controlled sheds</li>
+            <li>🌾 <strong>Feed:</strong> 100% organic, sourced from trusted vendors</li>
+            <li>👨‍🌾 <strong>Staff:</strong> Trained workers ensuring health and cleanliness</li>
+            <li>📦 <strong>Output:</strong> 1000+ kg poultry per day</li>
+            <li>🧼 <strong>Biosecurity:</strong> Daily cleaning, vaccines, vet visits</li>
+            <li>🚚 <strong>Delivery:</strong> Barkagaon, Patratu, Bhurkunda & nearby areas</li>
+        </ul>
+    </section>
+
+    <section id="gallery">
+        <h2>Farm Gallery</h2>
+        <!-- Autoplay slider showing one image at a time -->
+        <div id="slider" class="slider" tabindex="0" aria-label="Farm image slider">
+            <div class="slider-track">
+                <div class="slide"><img src="IMG20250312144030.jpg" alt="Chicken Farm"></div>
+                <div class="slide"><img src="Farm_1.jpg.jpg" alt="Poultry Hen"></div>
+                <div class="slide"><img src="IMG20250312143743.jpg" alt="Chick Feed"></div>
+                <div class="slide"><img src="poultry_large.jpg" alt="Farm Worker"></div>
+                <div class="slide"><img src="IMG20250312143813.jpg" alt="Chicken Farm"></div>
+                <div class="slide"><img src="Farm_2.jpg.jpg" alt="Poultry Hen"></div>
+            </div>
+            <button class="slider-btn prev" aria-label="Previous slide">‹</button>
+            <button class="slider-btn next" aria-label="Next slide">›</button>
+            <div class="slider-dots" role="tablist" aria-hidden="false"></div>
+            <button class="slider-fit-toggle" aria-label="Toggle image fit" title="Toggle image fit (Contain/Crop)">Crop</button>
+        </div>
+    </section>
+
+    <section id="contact ">
+        <h2>Contact Us</h2>
+        <p>We're here to answer your questions and fulfill your orders. Reach out to us directly or call us for enquriy :-</p>
+        <p>📞 <strong>Phone 1:</strong> 6206156121</p>
+        <a class="call-button " href="tel:+916206156121 ">📞 Call Now</a><br>
+        <p>📞 <strong>Phone 2:</strong> 8271882975</p>
+        <a class="call-button " href="tel:+918271882975 ">📞 Call Now</a>
+        <br><br>
+
+        <div class="social-section ">
+            <h2>Follow our journey</h2>
+            </h2>
+            <div class="social-icons ">
+                <!-- Facebook link with inline SVG icon and visible label -->
+                <a href="https://www.facebook.com/share/1AXQEiWKUb/" target="_blank" rel="noopener noreferrer" title="Facebook">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07C2 17.09 5.66 21.13 10.44 21.95v-6.95H7.9v-2.99h2.54V9.41c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.99h-2.34v6.95C18.34 21.13 22 17.09 22 12.07z"/>
+                    </svg>
+                    <span class="social-label">Facebook</span>
+                </a>
+
+                <!-- Instagram link with inline SVG icon and visible label -->
+                <a href="https://www.instagram.com/mk_murga_bazar_2020" target="_blank" rel="noopener noreferrer" title="Instagram">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 6.5A4.5 4.5 0 1 0 16.5 13 4.5 4.5 0 0 0 12 8.5zm5.2-3.6a1.1 1.1 0 1 0 1.1 1.1 1.1 1.1 0 0 0-1.1-1.1z"/>
+                    </svg>
+                    <span class="social-label">Instagram</span>
+                </a>
+
+                <!-- Location link with pin SVG (map) and visible label -->
+                <a href="https://goo.gl/maps/PhCbay8YZUEUEyJHA" target="_blank" rel="noopener noreferrer" title="Location">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/>
+                    </svg>
+                    <span class="social-label">Location</span>
+                </a>
+            </div>
+        </div>
+
+        <h2>Quick Message</h2>
+        <form action="https://formspree.io/f/xwkgyjpr " method="POST ">
+            <input type="text " name="name " placeholder="Your Name " required />
+            <input type="email " name="email " placeholder="Your Email " required />
+            <textarea name="message " placeholder="Your Message " rows="4 " required></textarea>
+            <button type="submit ">Send Message</button>
+        </form>
+    </section>
+
+    <a class="whatsapp-float" href="https://wa.me/916206156121" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
+        <!-- Brand-style circular WhatsApp icon (green circle + white phone glyph) -->
+        <svg width="28" height="28" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="11" fill="#25D366" />
+            <path d="M17.68 14.06c-.28-.14-1.65-.81-1.9-.9-.25-.09-.43-.14-.61.14-.18.28-.69.9-.85 1.09-.16.18-.31.2-.59.07-.28-.14-1.18-.44-2.25-1.39-.83-.74-1.39-1.66-1.55-1.94-.16-.28-.02-.43.12-.57.12-.12.28-.31.41-.47.14-.16.19-.28.28-.47.09-.18.05-.35-.02-.49-.07-.14-.61-1.47-.84-2.01-.22-.53-.45-.46-.61-.47-.16-.02-.35-.02-.53-.02s-.49.07-.75.35c-.26.28-.98.96-.98 2.33s1.01 2.7 1.15 2.89c.14.18 1.99 3.05 4.82 4.28 3.36 1.43 3.36 0 3.96-.02.6-.02 1.95-.78 2.23-1.53.28-.75.28-1.39.2-1.53-.09-.14-.25-.18-.54-.32z" fill="#fff"/>
+        </svg>
+    </a>
+    <a class="location-float" href="https://maps.app.goo.gl/sE8Q1cU96skWhXtZ6?g_st=ac" target="_blank" rel="noopener noreferrer" aria-label="Open location" title="Map Location">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z" fill="#fff"/>
+        </svg>
+    </a>
+
+    <!-- Lightbox modal for gallery images -->
+    <div id="lightbox" class="lightbox" aria-hidden="true">
+        <div class="lightbox-content" role="dialog" aria-modal="true">
+            <button class="lightbox-close" aria-label="Close">×</button>
+            <img id="lightbox-img" src="" alt="Expanded photo">
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2025 MK Poultry Farm | Made in Jharkhand with ❤
+    </footer>
+
+
+
+    <script>
+        (function() {
+            // -------------------------
+            // Lightbox functionality
+            // (opens an enlarged version of any gallery or slide image)
+            // -------------------------
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const closeBtn = document.querySelector('.lightbox-close');
+
+            function openLightbox(src, alt) {
+                lightboxImg.src = src;
+                lightboxImg.alt = alt || '';
+                lightbox.classList.add('open');
+                lightbox.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeLightbox() {
+                lightbox.classList.remove('open');
+                lightbox.setAttribute('aria-hidden', 'true');
+                lightboxImg.src = '';
+                document.body.style.overflow = '';
+            }
+
+            // Open lightbox when any gallery thumbnail OR slider image is clicked.
+            // We include both selectors so the same behavior applies whether the image
+            // is shown in the grid (.gallery) or inside the slider (.slide).
+            document.querySelectorAll('.gallery img, .slide img').forEach(img => {
+                img.addEventListener('click', (e) => {
+                    // Use the raw attribute value and trim spaces (some srcs had trailing spaces)
+                    const raw = e.currentTarget.getAttribute('src') || e.currentTarget.src || '';
+                    const src = (typeof raw === 'string') ? raw.trim() : raw;
+                    const alt = e.currentTarget.getAttribute('alt') || '';
+                    openLightbox(src, alt);
+                });
+            });
+
+            // Close handlers
+            closeBtn.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+            });
+
+            // Improve nav link click smooth scroll (optional)
+            document.querySelectorAll('nav a[href^="#"]').forEach(a => {
+                a.addEventListener('click', (e) => {
+                    const hash = a.getAttribute('href');
+                    if (hash && hash.startsWith('#')) {
+                        e.preventDefault();
+                        const el = document.querySelector(hash);
+                        if (el) el.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // -------------------------
+            // Slider initialization
+            // - single-slide visible
+            // - manual controls (prev/next/dots/swipe/keyboard)
+            // -------------------------
+            (function initSlider() {
+                const slider = document.getElementById('slider');
+                if (!slider) return;
+                const track = slider.querySelector('.slider-track');
+                const slides = Array.from(track.querySelectorAll('.slide'));
+                const prev = slider.querySelector('.slider-btn.prev');
+                const next = slider.querySelector('.slider-btn.next');
+                const dotsContainer = slider.querySelector('.slider-dots');
+
+                // set track width as percentage
+                track.style.width = (slides.length * 100) + '%';
+
+                // create dots
+                slides.forEach((s, i) => {
+                    const dot = document.createElement('button');
+                    dot.className = 'slider-dot';
+                    dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+                    dot.addEventListener('click', () => setIndex(i));
+                    dotsContainer.appendChild(dot);
+                });
+
+                // current slide index (0-based)
+                let index = 0;
+
+                // No-op height updater: CSS aspect-ratio controls slider height now
+                function updateSliderHeight() {
+                    // ensure no inline height is set so CSS aspect-ratio can apply
+                    slider.style.height = '';
+                }
+
+                // Move to a specific slide index and update UI (dots)
+                const setIndex = i => {
+                    index = (i + slides.length) % slides.length;
+                    track.style.transform = `translateX(${-index * 100}%)`;
+                    const dots = dotsContainer.querySelectorAll('.slider-dot');
+                    dots.forEach((d, idx) => d.classList.toggle('active', idx === index));
+                    updateSliderHeight();
+                };
+
+                // Prev/Next button handlers
+                if (prev) prev.addEventListener('click', () => setIndex(index - 1));
+                if (next) next.addEventListener('click', () => setIndex(index + 1));
+
+                // Autoplay removed: user controls navigation manually via buttons/dots/swipe/keyboard
+
+                // Fit toggle (Contain vs Cover) - improves perceived clarity by choosing crop or full-fit
+                const fitBtn = slider.querySelector('.slider-fit-toggle');
+                // default fit: contain (show whole image)
+                if (!slider.dataset.fit) slider.dataset.fit = 'contain';
+                const updateFitUI = () => {
+                    if (!fitBtn) return;
+                    const isContain = slider.dataset.fit === 'contain';
+                    fitBtn.textContent = isContain ? 'Crop' : 'Fit';
+                    fitBtn.setAttribute('aria-pressed', String(!isContain));
+                    fitBtn.title = isContain ? 'Show cropped (fill frame)' : 'Show full image (contain)';
+                };
+                if (fitBtn) {
+                    fitBtn.addEventListener('click', () => {
+                        slider.dataset.fit = (slider.dataset.fit === 'contain') ? 'cover' : 'contain';
+                        updateFitUI();
+                    });
+                }
+                // initialize fit button label
+                updateFitUI();
+
+                // Touch / swipe support for mobile
+                let touchStartX = 0;
+                let touchDeltaX = 0;
+                slider.addEventListener('touchstart', (e) => {
+                    stop();
+                    touchStartX = e.touches[0].clientX;
+                    touchDeltaX = 0;
+                }, {
+                    passive: true
+                });
+                slider.addEventListener('touchmove', (e) => {
+                    touchDeltaX = e.touches[0].clientX - touchStartX;
+                }, {
+                    passive: true
+                });
+                slider.addEventListener('touchend', () => {
+                    const threshold = 40; // px
+                    if (Math.abs(touchDeltaX) > threshold) {
+                        if (touchDeltaX < 0) setIndex(index + 1);
+                        else setIndex(index - 1);
+                    }
+                    // do not resume autoplay automatically after gesture
+                });
+
+                // keyboard
+                slider.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') setIndex(index - 1);
+                    if (e.key === 'ArrowRight') setIndex(index + 1);
+                });
+
+                // Add error handler to all images in the slider to show a visible error if not found
+                slides.forEach(slide => {
+                    const img = slide.querySelector('img');
+                    if (img) {
+                        img.onerror = function() {
+                            this.style.background = '#a00';
+                            this.style.color = '#fff';
+                            this.style.fontSize = '2em';
+                            this.style.textAlign = 'center';
+                            this.style.content = '';
+                            this.alt = 'Image not found';
+                            this.src = '';
+                            this.parentNode.innerHTML = '<div style="color:#fff;background:#a00;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:1.2em;">Image not found:<br>' + img.getAttribute('data-orig-src') + '</div>';
+                            console.error('Image not found:', img.getAttribute('data-orig-src'));
+                        };
+                        img.setAttribute('data-orig-src', img.src);
+                    }
+                });
+                // initialize (autoplay removed)
+                setIndex(0);
+            })();
+        })();
+    </script>
+
+</body>
+
+</html>
